@@ -1,28 +1,33 @@
 var axios = require('axios');
 
-function getAllMCCData () {
+let allMCCData;
+
+let allTransInfo;
+
+let basicAuth = {username: 'uXK5uhtGqOxcdsJBzWW2z0HYUGpsUlse',
+    password: 'yYxzZL68jIGFa4OE'}
+
+function fetchMCCData () {
     var config = {
         method: 'get',
         url: 'https://alpha-api.usbank.com/innovation/bank-node/reference/v1/products',
         headers: {
             'Accept': 'application/json',
         },
-        auth: {
-            username: 'uXK5uhtGqOxcdsJBzWW2z0HYUGpsUlse',
-            password: 'yYxzZL68jIGFa4OE'
-        }
+        auth: basicAuth
     }
 
 
     axios(config).then(function (response) {
-        return JSON.stringify(response.data);
+        console.log(JSON.stringify(response.data));
     }).catch(function (error) {
         console.log(error);
     })
 }
 
 
-function getCCTransactionHistory() {
+
+function getCCTransactions() {
 
     var accountID = 935121592917;
 
@@ -32,24 +37,15 @@ function getCCTransactionHistory() {
         headers: {
             'Accept': 'application/json',
         },
-        auth: {
-            username: 'uXK5uhtGqOxcdsJBzWW2z0HYUGpsUlse',
-            password: 'yYxzZL68jIGFa4OE'
-        }
+        auth: basicAuth
     }
 
     axios(config).then(function (response) {
-        return JSON.stringify(response.data);
+        console.log(JSON.stringify(response.data));
     }).catch(function (error) {
         console.log(error);
     })
 }
 
-function addMCCData() {
-    let allMCCData = getAllMCCData();
-    let allTransData = getCCTransactionHistory();
 
-    console.log(allMCCData)
-}
 
-addMCCData()
