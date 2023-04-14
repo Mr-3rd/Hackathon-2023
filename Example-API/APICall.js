@@ -48,4 +48,20 @@ function getCCTransactions() {
 }
 
 
+function createVirtualCard () {
+    var config = {
+        method: 'get',
+        url: 'https://alpha-api.usbank.com/innovation/bank-node/customer-accounts/v1/account/' + accountID + '/trans/full',
+        headers: {
+            'Accept': 'application/json',
+        },
+        auth: basicAuth
+    }
+
+    axios(config).then(function (response) {
+        console.log(JSON.stringify(response.data));
+    }).catch(function (error) {
+        console.log(error);
+    })
+}
 
